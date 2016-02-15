@@ -40,8 +40,8 @@ class Bouncer
 
   def play_again
     puts "Would you like to play again? y/n"
-    again = gets.chomp
-    if again == n
+    again = gets.chomp.downcase
+    if again == "n"
       puts "Bouncer Ended."
     else
       puts "Restarting Bouncer..."
