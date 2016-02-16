@@ -4,8 +4,6 @@ class Bouncer
   def start
     puts "====RUNNING BOUNCER===="
     @activities = [
-      {min_age: 17,
-        activity: "nothing"},
       {min_age: 18,
         activity: "vote"},
       {min_age: 18,
@@ -31,16 +29,20 @@ class Bouncer
   end
 
   def age_activities
-    activities
-      .select {|activity| activity[:min_age] <= @age}
-      .map {|activity| activity[:activity]}
-      .each {|activity| puts "You can do #{activity}"}
+    if @age <= 17
+      puts "You can do nothing"
+    else
+      activities
+        .select {|activity| activity[:min_age] <= @age}
+        .map {|activity| activity[:activity]}
+        .each {|activity| puts "You can #{activity}"}
+    end
     play_again
   end
 
   def play_again
     puts "Would you like to play again? y/n"
-    again = gets.chomp.downcase
+    again = gets.chomp
     if again == "n"
       puts "Bouncer Ended."
     else
